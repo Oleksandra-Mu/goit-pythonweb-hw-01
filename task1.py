@@ -1,11 +1,5 @@
 from abc import ABC, abstractmethod
-import logging
-
-logging.basicConfig(
-    format="%(asctime)s %(levelname)s %(message)s",
-    level=logging.INFO,
-    handlers=[logging.StreamHandler()],
-)
+from logger import logger
 
 
 # Створення абстрактного класу Vehicle
@@ -22,7 +16,7 @@ class Car(Vehicle):
         self.spec_region = spec_region
 
     def start_engine(self) -> None:
-        logging.info(
+        logger.info(
             "%s %s (%s Spec): Двигун запущено", self.make, self.model, self.spec_region
         )
 
@@ -34,7 +28,7 @@ class Motorcycle(Vehicle):
         self.spec_region = spec_region
 
     def start_engine(self) -> None:
-        logging.info(
+        logger.info(
             "%s %s (%s Spec): Мотор заведено", self.make, self.model, self.spec_region
         )
 

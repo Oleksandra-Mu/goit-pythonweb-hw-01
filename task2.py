@@ -1,12 +1,6 @@
 from abc import ABC, abstractmethod
-import logging
+from logger import logger
 from typing import List
-
-logging.basicConfig(
-    format="%(asctime)s %(levelname)s %(message)s",
-    level=logging.INFO,
-    handlers=[logging.StreamHandler()],
-)
 
 
 class Book:
@@ -36,7 +30,7 @@ class Library(LibraryInterface):
 
     def add_book(self, book: Book) -> None:
         self.library.append(book)
-        logging.info(
+        logger.info(
             "Book added: Title: %s, Author: %s, Year: %s",
             book.title,
             book.author,
@@ -47,17 +41,17 @@ class Library(LibraryInterface):
         for book in self.library:
             if book.title == title:
                 self.library.remove(book)
-                logging.info("Book removed: %s", title)
+                logger.info("Book removed: %s", title)
                 break
         else:
-            logging.warning("Book not found: %s", title)
+            logger.warning("Book not found: %s", title)
 
     def show_books(self) -> None:
         if not self.library:
-            logging.info("У бібліотеці немає жодної книги.")
+            logger.info("У бібліотеці немає жодної книги.")
             return
         for book in self.library:
-            logging.info(
+            logger.info(
                 "Title: %s, Author: %s, Year: %s", book.title, book.author, book.year
             )
 
